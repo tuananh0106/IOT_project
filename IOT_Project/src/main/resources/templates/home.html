@@ -1,0 +1,63 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<th:block th:include="/_header_on" th:if="${userdto.email}"></th:block>
+<th:block th:include="/_header_off" th:unless="${userdto.email}"></th:block>
+<div class="container">
+    <div class="row">
+
+        <!-- success message  -->
+        <div th:if="${param.success}">
+            <div class="alert alert-info"> You are successfull registered to our awsome app!</div>
+        </div>
+
+        <h1>Status In Chiken cage</h1>
+        <table class="table table-striped table-success text-center">
+            <thead>
+            <tr>
+                <th class="col-md-1">Temperature</th>
+                <th class="col-md-4">Humidity</th>
+                <th class="col-md-2">WindSpeed</th>
+                <th class="col-md-2">ChikenNumber</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="statusIot : ${statusIotList}">
+                <tr>
+                    <td th:text="${statusIot.temperature}+'℃'"></td>
+                    <td th:text="${statusIot.humidity}+'%'"></td>
+                    <td th:text="${statusIot.windSpeed}+'km/h'"></td>
+                    <td th:text="${statusIot.chikenNumber}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <div class="row d-flex col-md-12">
+            <div class="col col-md-1"></div>
+            <div class="col d-flex justify-content-start">
+                <button class="btn">
+                    Weather Forecast
+                </button>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <button class="btn">
+                    Control Chiken cage
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>
